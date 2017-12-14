@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Confirm Logout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Logout", "Account"))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <h3>Do you want to logging out from Functional Annotator ?</h3>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">Yes I want</button>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary btn-sm">No, keep logged in</a>
+}

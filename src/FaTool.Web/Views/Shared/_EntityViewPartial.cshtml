@@ -1,0 +1,18 @@
+﻿@model FaTool.Web.Models.UserInterface.IEntityView
+
+@{ Html.RenderPartial("_ObjectViewPartial", Model.Properties); }
+
+@if (Model.HasNavTabs)
+{
+
+    Html.RenderPartial("_NavTabsPartial", Model.NavTabLayout);
+
+    if (!Model.TabContent.IsTableView)
+    {
+        Html.RenderPartial("_ObjectViewPartial", Model.TabContent);
+    }
+    else
+    {
+        Html.RenderPartial("_TableViewPartial", Model.TabContent);
+    }
+}

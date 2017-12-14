@@ -1,0 +1,19 @@
+﻿@model FaTool.Web.Membership.Identity.FaToolUser
+
+@{
+    ViewBag.Title = "Confirm Delete Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Delete", "Account"))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <h4>Do you want to delete user "@Model.UserName" from Membership Database ?</h4>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">Yes</button>
+    <a href="@Url.Action("Index")" class="btn btn-primary btn-sm">Cancel</a>
+}
+

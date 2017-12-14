@@ -1,0 +1,91 @@
+﻿@model FaTool.Web.Models.UserInterface.ITableView
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">@Model.Caption</div>
+    <div class="panel-body">
+
+        <table class="table table-bordered table-condensed table-striped">
+            <thead>
+                <tr>
+                    @for (int c = 0; c < @Model.NumberOfFields; c++)
+                    {
+                        <th>@Model.GetFieldName(c)</th>
+                    }
+                    @if (Model.HasRowActions)
+                    {
+                        <th class="fit"></th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (int r = 0; r < @Model.NumberOfRows; r++)
+                {
+                    <tr>
+                        @for (int c = 0; c < @Model.NumberOfFields; c++)
+                        {
+                            if (Model.HasSubValues(c))
+                            {
+                                <td>
+                                    <strong>@Model.GetRow(r).GetValue(c)</strong>
+
+                                    @foreach (var v in @Model.GetRow(r).GetSubValues(c))
+                                    {
+                                        <br />
+                                        @v
+                                    }
+
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    @Model.GetRow(r).GetValue(c)
+                                </td>
+                            }
+                        }
+                        @if (Model.HasRowActions)
+                        {
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                                        @Model.GetRow(r).Actions.Caption
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var action in Model.GetRow(r).Actions)
+                                        {
+                                            if (action.Disabled)
+                                            {
+                                                <li class="disabled"><a href="@action.Url">@action.LinkText</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a href="@action.Url">@action.LinkText</a></li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div>
+            @foreach (var action in Model.Actions)
+            {
+                if (action.Disabled)
+                {
+                    <a class="btn btn-primary btn-sm disabled" href="@action.Url">@action.LinkText</a>
+                }
+                else
+                {
+                    <a class="btn btn-primary btn-sm" href="@action.Url">@action.LinkText</a>
+                }
+            }
+        </div>
+    </div>
+</div>

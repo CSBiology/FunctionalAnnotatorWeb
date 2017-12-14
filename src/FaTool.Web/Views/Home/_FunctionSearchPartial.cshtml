@@ -1,0 +1,21 @@
+﻿@model FaTool.Web.Models.Home.FunctionSearchViewModel
+
+@using (Html.BeginForm("Results", "ProteinSearch", FormMethod.Post, new { @class = "form-inline" }))
+{      
+    @Html.HiddenFor(x=>x.Query.SearchOption)
+    
+    <div class="form-group form-group-sm">
+        @Html.LabelFor(x => x.Query.SourceOrganismID)
+        @Html.DropDownListFor(x => x.Query.SourceOrganismID, Model.SourceOrganisms, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group form-group-sm">
+        @Html.LabelFor(x => x.Query.SearchValue)
+        @Html.TextBoxFor(x => x.Query.SearchValue, new { @class = "form-control", @placeholder = "Insert your search text." })
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+    @Html.ActionLink("More ...", "Index", "ProteinSearch", null, new { @class = "btn btn-primary btn-sm" })
+
+}
+

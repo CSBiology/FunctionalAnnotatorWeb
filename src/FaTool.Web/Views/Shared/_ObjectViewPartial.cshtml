@@ -1,0 +1,48 @@
+﻿@model FaTool.Web.Models.UserInterface.IObjectView
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">@Model.Caption</div>
+    <div class="panel-body">
+        <table class="table table-bordered table-condensed table-striped">
+            <tbody>
+                @for (int fidx = 0; fidx < Model.NumberOfFields; fidx++)
+                {
+                    <tr>
+                        <td class="fit"><strong>@Model.GetFieldName(fidx)</strong></td>
+
+                        @if (Model.HasSubValues(fidx))
+                        {
+                            <td>
+                                <strong>@Model.GetValue(fidx)</strong>
+                                @foreach (var sv in Model.GetSubValues(fidx))
+                                {
+                                    <br />@sv
+                                }
+                            </td>
+                        }
+                        else
+                        {
+                            <td>@Model.GetValue(fidx)</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div>
+            @foreach (var action in Model.Actions)
+            {
+                if (action.Disabled)
+                {
+                    <a class="btn btn-primary btn-sm disabled" href="@action.Url">@action.LinkText</a>
+                }
+                else
+                {
+                    <a class="btn btn-primary btn-sm" href="@action.Url">@action.LinkText</a>
+                }
+            }
+        </div>
+
+    </div>
+</div>

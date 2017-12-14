@@ -1,0 +1,54 @@
+﻿@model FaTool.Web.Models.Entities.AnnotationEditViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Edit Annotation</div>
+    <div class="panel-body">
+        <form method="post" action="@Url.Action("Edit")">
+
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(x => x.Args.EndEditAction)
+            @Html.HiddenFor(x => x.Args.SaveAction)
+            @Html.HiddenFor(x => x.Args.SelectedTermId)
+
+            @Html.HiddenFor(x => x.Entity.RowVersion)
+            @Html.HiddenFor(x => x.Entity.FK_Protein)
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.Entity.ID)
+                @Html.TextBoxFor(x => x.Entity.ID, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.Entity.EntryDate)
+                @Html.TextBoxFor(x => x.Entity.EntryDate, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.Entity.EvidenceCode)
+                @Html.DropDownListFor(x => x.Entity.EvidenceCode, Model.GoEvidenceOptions, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Entity.EvidenceCode, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.Entity.FK_Term)
+                <div class="input-group">
+                    @Html.DropDownListFor(x => x.Entity.FK_Term, Model.TermOptions, new { @class = "form-control", @readonly = "readonly" })
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" type="submit" formaction="@Url.Action("ChangeTerm")">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>                    
+                </div>
+                @Html.ValidationMessageFor(x => x.Entity.FK_Term, null, new { @class = "label label-danger" })
+            </div>
+
+            <button class="btn btn-primary btn-sm" type="submit" formaction="@Model.Args.SaveAction">Save</button>
+            <a class="btn btn-primary btn-sm" href="@Model.Args.EndEditAction">Cancel</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿@model FaTool.Web.Models.UserInterface.ICheckList
+
+<ul>
+    @foreach (var item in Model.Items)
+    {
+        <li>
+            <div class="checkbox">
+                <label>
+                    @if (@item.Selected)
+                    {
+                        <input type="checkbox" name="@Model.PropertyName" value="@item.Value" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="@Model.PropertyName" value="@item.Value" />
+                    }
+                    @item.Text
+                </label>
+            </div>
+        </li>
+    }
+</ul>
+

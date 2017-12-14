@@ -1,0 +1,38 @@
+﻿@model FaTool.Web.Models.Entities.AnnotationEditViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">Select Term</div>
+    <div class="panel-body">
+        <form method="post" action="@Url.Action("SelectTerm")">
+
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(x => x.Args.EndEditAction)
+            @Html.HiddenFor(x => x.Args.SaveAction)            
+
+            @Html.HiddenFor(x => x.Entity.ID)
+            @Html.HiddenFor(x => x.Entity.RowVersion)
+            @Html.HiddenFor(x => x.Entity.EvidenceCode)
+            @Html.HiddenFor(x => x.Entity.EntryDate)
+            @Html.HiddenFor(x => x.Entity.FK_Protein)
+            @Html.HiddenFor(x => x.Entity.FK_Term)
+
+            @Html.HiddenFor(x => x.TermQuery.OntologyId)
+            @Html.HiddenFor(x => x.TermQuery.SearchValue)
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.Args.SelectedTermId)
+                @Html.DropDownListFor(x => x.Args.SelectedTermId, Model.TermOptions, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Args.SelectedTermId, null, new { @class = "label label-danger" })
+            </div>
+
+            <button class="btn btn-primary btn-sm" type="submit" formaction="@Url.Action("SetTerm")">Ok</button>
+            <button class="btn btn-primary btn-sm" type="submit" formaction="@Url.Action("Edit")">Edit</button>
+            <button class="btn btn-primary btn-sm" type="submit" formaction="@Url.Action("ChangeTerm")">New Search</button>
+
+        </form>
+    </div>
+</div>

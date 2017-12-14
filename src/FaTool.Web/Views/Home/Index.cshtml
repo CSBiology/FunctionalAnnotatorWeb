@@ -1,0 +1,52 @@
+﻿@model FaTool.Web.Models.Home.HomeViewModel
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h3>Welcome to Protein Functional Annotator (FaTool)</h3>
+<hr />
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">Search for Functions</div>
+        <div class="panel-body">
+            @{
+                Html.RenderPartial("_FunctionSearchPartial", Model.FunctionSearch);
+            }
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Source Organisms currently available in the Annotation Database</div>
+        <div class="panel-body">
+            <ul class="list-inline">
+                @foreach (var org in Model.OrganismSearchLinks)
+                {
+                    <li><a href="@org.Url">@org.LinkText</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Data Annotator</div>
+        <div class="panel-body">
+            <p>                
+                Automated annotation of experimental data sheets.
+                <a href="@Url.Action("RunApp", "DataAnnotator")">Launch Data Annotator</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">OData</div>
+        <div class="panel-body">
+            <p>
+                FaTool provides an OData V3 compatible web service.
+                <a href="@Url.Action("OData")">Show Metadata</a>
+            </p>
+        </div>
+    </div>
+
+</div>
+

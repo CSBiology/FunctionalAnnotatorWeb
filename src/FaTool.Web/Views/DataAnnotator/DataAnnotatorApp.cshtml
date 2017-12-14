@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Data File Annotator";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="glasspane" class="glass-pane">
+    <div class="glass-pane-cancel">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <button id="stopButton" type="button" class="btn btn-primary">Stop</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Data File Annotator</div>
+    <div class="panel-body">
+
+        <div class="form-group">
+            <label>Dataset File</label>
+            <div class="input-group">
+                <input id="selectFile" type="file" style="display: none;">
+                <input id="fileName" type="text" readonly="readonly" class="form-control" />
+                <div class="input-group-btn">
+                    <button id="selectFileButton" type="button" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Select Source Organism</label>
+            <select id="selectOrganism" class="form-control"></select>
+        </div>
+
+        <div class="form-group">
+            <label>Select Ontology</label>
+            <select id="selectOntology" class="form-control"></select>
+        </div>
+
+        <div class="form-group">
+            <label>Select Protein Name Column</label>
+            <div class="input-group">
+                <select id="selectColumn" class="form-control"></select>
+                <div class="input-group-btn">
+                    <button id="runButton" type="button" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-play"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Processing Messages</label>
+            <textarea id="messages" class="form-control" rows="5"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Results</label>
+            <div class="pre-scrollable">
+                <table id="dataTable" class="table table-condensed table-bordered table-striped"></table>
+            </div>
+        </div>
+
+        <button id="exportResultsButton" type="button" class="btn btn-sm btn-primary">Export Results</button>
+
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/apps/data-annotator")
+
+<script>
+
+    $(document).ready(new DataAnnotatorApp().run());    
+
+</script>

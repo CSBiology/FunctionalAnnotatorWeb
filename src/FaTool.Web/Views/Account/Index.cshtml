@@ -1,0 +1,9 @@
+﻿@model FaTool.Web.Models.Account.AccountListViewModel
+
+@{
+    ViewBag.Title = "Accounts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ Html.RenderPartial("_TableViewPartial", Model.Accounts); }
+

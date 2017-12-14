@@ -1,0 +1,17 @@
+﻿@model FaTool.Web.Models.UserInterface.INavTabViewLayout
+
+<div class="panel">
+    <ul class="nav nav-tabs">
+        @foreach (var o in Model)
+        {
+            if (o.Active)
+            {
+                <li class="active"><a href="@o.Link.Url">@o.Link.LinkText</a></li>
+            }
+            else
+            {
+                <li><a href="@o.Link.Url">@o.Link.LinkText</a></li>
+            }
+        }
+    </ul>
+</div>

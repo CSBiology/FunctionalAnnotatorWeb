@@ -1,0 +1,27 @@
+﻿@model FaTool.Web.Models.Account.EditUserRolesViewModel
+
+@{
+    ViewBag.Title = "Grant/Revoke User Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="max-width: 460px; margin: auto;">
+    <div class="panel panel-primary">
+        <div class="panel-heading">@Model.Caption</div>
+        <div class="panel-body">
+
+            @using (Html.BeginForm("Roles", "Account"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(x => x.Id)
+
+                <div class="form-group">
+                    @{ Html.RenderPartial("_CheckListPartial", Model.Properties); }
+                </div>
+
+                <button class="btn btn-primary btn-sm" type="submit">Submit</button>
+                <button class="btn btn-primary btn-sm" type="reset">Reset</button>
+            }
+        </div>
+    </div>
+</div>

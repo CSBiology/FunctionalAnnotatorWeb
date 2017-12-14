@@ -1,0 +1,31 @@
+﻿@model FaTool.Web.Models.Account.LockoutUserViewModel
+
+@{
+    ViewBag.Title = "Lock/Unlock User Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="max-width: 460px; margin: auto;">
+    <div class="panel panel-primary">
+        <div class="panel-heading">@Model.Caption</div>
+        <div class="panel-body">
+
+            @using (Html.BeginForm("Lockout", "Account"))
+            {
+                @Html.HiddenFor(x => x.Id)
+                @Html.AntiForgeryToken()
+                
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>@Html.CheckBoxFor(x => x.Properties.IsLockedOut) <strong> Login Disabled</strong></label>
+                    </div>
+                    @Html.ValidationMessageFor(x => x.Properties.IsLockedOut, null, new { @class = "label label-danger" })
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                
+            }
+
+        </div>
+    </div>
+</div>

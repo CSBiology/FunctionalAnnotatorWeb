@@ -1,0 +1,8 @@
+﻿@model FaTool.Web.Models.Account.UserViewModel
+
+@{
+    ViewBag.Title = "Show User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ Html.RenderPartial("_ObjectViewPartial", Model.Properties); }

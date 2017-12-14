@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title - FaTool</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")    
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</head>
+<body>
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Functional Annotator Tool", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Accounts", "Index", "Account")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="@Url.Action("Current", "Account")"><span class="glyphicon glyphicon-user"></span> @User.Identity.Name</a></li>
+                        <li><a href="@Url.Action("Logout", "Account")"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Register", "Account")"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                        <li><a href="@Url.Action("Login", "Account")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - CSB Group, University of Kaiserslautern, Germany</p>
+        </footer>
+    </div>
+</body>
+</html>
