@@ -1,7 +1,8 @@
-﻿#region license
+﻿extensions: .cs
+#region license
 // The MIT License (MIT)
 
-// FilterConfig.cs
+// %FileName%
 
 // Copyright (c) 2016 Alexander Lüdemann
 // alexander.luedemann@outlook.com
@@ -27,17 +28,3 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #endregion
-
-using System.Web;
-using System.Web.Mvc;
-
-namespace FaTool.Web
-{
-    public class FilterConfig
-    {
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-        {
-            filters.Add(new HandleErrorAttribute());
-        }
-    }
-}

@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="FaTool.Web.Membership.licenseheader" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

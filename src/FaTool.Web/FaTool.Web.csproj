@@ -223,6 +223,7 @@
     <Content Include="Scripts\apps\data-annotator-app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="FaTool.Web.licenseheader" />
     <None Include="Properties\PublishProfiles\FaToolWebPublish.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\FileSaver.js" />
